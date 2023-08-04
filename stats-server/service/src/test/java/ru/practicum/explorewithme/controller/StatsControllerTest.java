@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.practicum.explorewithme.dto.EndpointHitDto;
 import ru.practicum.explorewithme.dto.ViewStatsDto;
-import ru.practicum.explorewithme.model.HttpResponse;
+import ru.practicum.explorewithme.model.HitHttpResponse;
 import ru.practicum.explorewithme.model.StatsRequest;
 import ru.practicum.explorewithme.service.StatsService;
 
@@ -28,7 +28,7 @@ public class StatsControllerTest {
     private StatsController controller;
 
     private EndpointHitDto hit;
-    private HttpResponse response;
+    private HitHttpResponse hitResponse;
     private List<ViewStatsDto> stats;
     private StatsRequest request;
 
@@ -50,26 +50,24 @@ public class StatsControllerTest {
 
         stats = List.of(new ViewStatsDto("ewm-main-service", "/events/1"));
 
-        response = new HttpResponse("Информация сохранена");
+        hitResponse = new HitHttpResponse("Информация сохранена");
     }
 
     @Test
     public void addEndPointHitWhenMethodInvokedReturnResponse() {
-        when(service.addEndpointHit(hit)).thenReturn(response);
+        when(service.addEndpointHit(hit)).thenReturn(hitResponse);
 
-        HttpResponse receivedResponse = controller.addEndpointHit(hit);
+        HitHttpResponse receivedResponse = controller.addEndpointHit(hit);
 
         assertEquals("Информация сохранена", receivedResponse.getDescription());
     }
 
     @Test
     public void getStatsWhenMethodInvokedReturnStats() {
-        response = new HttpResponse(stats);
+        when(service.getStats(any())).thenReturn(stats);
 
-        when(service.getStats(any())).thenReturn(response);
+        List<ViewStatsDto> receivedResponse = controller.getStats(request.getStart(), request.getEnd(), request.getUris(), request.getUnique());
 
-        HttpResponse receivedResponse = controller.getStats(request.getStart(), request.getEnd(), request.getUris(), request.getUnique());
-
-        assertEquals(stats, receivedResponse.getViewStatsDto());
+        assertEquals(stats, receivedResponse);
     }
 }

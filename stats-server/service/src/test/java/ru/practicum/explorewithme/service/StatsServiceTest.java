@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.practicum.explorewithme.dto.ViewStatsDto;
 import ru.practicum.explorewithme.model.EndpointHit;
-import ru.practicum.explorewithme.model.HttpResponse;
+import ru.practicum.explorewithme.model.HitHttpResponse;
 import ru.practicum.explorewithme.model.StatsRequest;
 import ru.practicum.explorewithme.storage.StatsRepository;
 
@@ -41,7 +41,6 @@ public class StatsServiceTest {
     private LocalDateTime end;
     private Collection<String> uris;
     private List<EndpointHit> hits;
-    private HttpResponse response;
 
     @BeforeEach
     public void setUp() {
@@ -64,14 +63,13 @@ public class StatsServiceTest {
         stats = List.of(new ViewStatsDto("ewm-main-service", "/events/1"));
         uris = Arrays.asList(request.getUris());
         hits = List.of(hit);
-        response = new HttpResponse(stats);
     }
 
     @Test
     public void addEndpointHitWhenMethodInvokedReturnResponse() {
         when(repository.save(hit)).thenReturn(hit);
 
-        HttpResponse response = service.addEndpointHit(toDto(hit));
+        HitHttpResponse response = service.addEndpointHit(toDto(hit));
 
         assertEquals("Информация сохранена", response.getDescription());
     }
@@ -97,15 +95,14 @@ public class StatsServiceTest {
         threeHits.add(thirdHit);
 
         stats.get(0).addHit(); // add one hit to first statistic
-        List<ViewStatsDto> statsOfTwoHits = new ArrayList<>(stats);
-        statsOfTwoHits.add(new ViewStatsDto("ewm-main-service", "/feeds/1"));
-        response = new HttpResponse(statsOfTwoHits);
+        List<ViewStatsDto> listOfThreeHits = new ArrayList<>(stats);
+        listOfThreeHits.add(new ViewStatsDto("ewm-main-service", "/feeds/1"));
 
         when(repository.findAllByTimestampIsAfterAndTimestampIsBeforeAndUriIsIn(start, end, uris)).thenReturn(threeHits);
 
-        HttpResponse receivedResponse = service.getStats(request);
+        List<ViewStatsDto> receivedResponse = service.getStats(request);
 
-        assertEquals(response.getViewStatsDto(), receivedResponse.getViewStatsDto());
+        assertEquals(listOfThreeHits, receivedResponse);
     }
 
     @Test
@@ -114,9 +111,9 @@ public class StatsServiceTest {
 
         when(repository.findAllByTimestampIsAfterAndTimestampIsBefore(start, end)).thenReturn(hits);
 
-        HttpResponse receivedResponse = service.getStats(request);
+        List<ViewStatsDto> receivedResponse = service.getStats(request);
 
-        assertEquals(response.getViewStatsDto(), receivedResponse.getViewStatsDto());
+        assertEquals(stats, receivedResponse);
     }
 
     @Test
@@ -125,8 +122,8 @@ public class StatsServiceTest {
 
         when(repository.findAllByTimestampIsAfterAndTimestampIsBeforeAndUriIsIn(start, end, uris)).thenReturn(hits);
 
-        HttpResponse receivedResponse = service.getStats(request);
+        List<ViewStatsDto> receivedResponse = service.getStats(request);
 
-        assertEquals(response.getViewStatsDto(), receivedResponse.getViewStatsDto());
+        assertEquals(stats, receivedResponse);
     }
 }

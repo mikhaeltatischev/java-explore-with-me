@@ -1,12 +1,15 @@
 package ru.practicum.explorewithme.service;
 
 import ru.practicum.explorewithme.dto.EndpointHitDto;
-import ru.practicum.explorewithme.model.HttpResponse;
+import ru.practicum.explorewithme.dto.ViewStatsDto;
+import ru.practicum.explorewithme.model.HitHttpResponse;
 import ru.practicum.explorewithme.model.StatsRequest;
+
+import java.util.List;
 
 public interface StatsService {
 
-    HttpResponse addEndpointHit(EndpointHitDto hit);
+    HitHttpResponse addEndpointHit(EndpointHitDto hit);
 
-    HttpResponse getStats(StatsRequest request);
+    List<ViewStatsDto> getStats(StatsRequest request);
 }

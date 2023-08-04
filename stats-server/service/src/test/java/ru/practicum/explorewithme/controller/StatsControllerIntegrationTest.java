@@ -122,9 +122,9 @@ public class StatsControllerIntegrationTest {
                         .queryParam("start", "2000-07-06 11:00:23")
                         .queryParam("end", "2100-10-06 11:00:23"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.viewStatsDto.length()", is(2)))
-                .andExpect(jsonPath("$.viewStatsDto[0].hits", is(2)))
-                .andExpect(jsonPath("$.viewStatsDto[1].hits", is(1)));
+                .andExpect(jsonPath("$.length()", is(2)))
+                .andExpect(jsonPath("$[0].hits", is(2)))
+                .andExpect(jsonPath("$[1].hits", is(1)));
     }
 
     @Test
@@ -134,7 +134,7 @@ public class StatsControllerIntegrationTest {
                         .queryParam("start", "2100-07-06 11:00:23")
                         .queryParam("end", "2200-10-06 11:00:23"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.viewStatsDto.length()", is(0)));
+                .andExpect(jsonPath("$.length()", is(0)));
     }
 
     @Test
@@ -145,8 +145,8 @@ public class StatsControllerIntegrationTest {
                         .queryParam("end", "2100-10-06 11:00:23")
                         .queryParam("uris", "/events/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.viewStatsDto.length()", is(1)))
-                .andExpect(jsonPath("$.viewStatsDto[0].hits", is(2)));
+                .andExpect(jsonPath("$.length()", is(1)))
+                .andExpect(jsonPath("$[0].hits", is(2)));
     }
 
     @Test
@@ -158,7 +158,7 @@ public class StatsControllerIntegrationTest {
                         .queryParam("unique", "true")
                         .queryParam("uris", "/events/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.viewStatsDto.length()", is(1)))
-                .andExpect(jsonPath("$.viewStatsDto[0].hits", is(1)));
+                .andExpect(jsonPath("$.length()", is(1)))
+                .andExpect(jsonPath("$[0].hits", is(1)));
     }
 }

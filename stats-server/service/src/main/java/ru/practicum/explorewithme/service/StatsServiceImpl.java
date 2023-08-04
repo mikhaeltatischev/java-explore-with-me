@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import ru.practicum.explorewithme.dto.EndpointHitDto;
 import ru.practicum.explorewithme.dto.ViewStatsDto;
 import ru.practicum.explorewithme.model.EndpointHit;
-import ru.practicum.explorewithme.model.HttpResponse;
+import ru.practicum.explorewithme.model.HitHttpResponse;
 import ru.practicum.explorewithme.model.StatsRequest;
 import ru.practicum.explorewithme.storage.StatsRepository;
 
@@ -36,16 +36,16 @@ public class StatsServiceImpl implements StatsService {
     }
 
     @Override
-    public HttpResponse addEndpointHit(EndpointHitDto hit) {
+    public HitHttpResponse addEndpointHit(EndpointHitDto hit) {
         EndpointHit endpointHit = repository.save(toHit(hit));
 
         log.info("Hit: " + endpointHit + " saved");
 
-        return new HttpResponse(MESSAGE);
+        return new HitHttpResponse(MESSAGE);
     }
 
     @Override
-    public HttpResponse getStats(StatsRequest request) {
+    public List<ViewStatsDto> getStats(StatsRequest request) {
         List<EndpointHit> hits = findHits(request);
         List<EndpointHitDto> hitsDto = toDto(hits);
 
@@ -59,7 +59,7 @@ public class StatsServiceImpl implements StatsService {
                 .collect(Collectors.toList());
         log.info("Received statistics: " + stats);
 
-        return new HttpResponse(stats);
+        return stats;
     }
 
     private List<ViewStatsDto> createStats(List<EndpointHitDto> hits) {
