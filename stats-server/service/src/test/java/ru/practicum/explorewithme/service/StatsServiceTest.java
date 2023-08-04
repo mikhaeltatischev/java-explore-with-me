@@ -99,7 +99,6 @@ public class StatsServiceTest {
         stats.get(0).addHit(); // add one hit to first statistic
         List<ViewStatsDto> statsOfTwoHits = new ArrayList<>(stats);
         statsOfTwoHits.add(new ViewStatsDto("ewm-main-service", "/feeds/1"));
-        
         response = new HttpResponse(statsOfTwoHits);
 
         when(repository.findAllByTimestampIsAfterAndTimestampIsBeforeAndUriIsIn(start, end, uris)).thenReturn(threeHits);
