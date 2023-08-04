@@ -26,7 +26,7 @@ import static org.hamcrest.Matchers.is;
 @AutoConfigureMockMvc
 @SpringBootTest(properties = "db.name=test")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-@Sql(value = {"/set-up-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(value = {"/schema.sql", "/set-up-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = {"/set-up-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class StatsControllerIntegrationTest {
 
