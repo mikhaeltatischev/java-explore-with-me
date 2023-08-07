@@ -90,7 +90,7 @@ public class StatsServiceImpl implements StatsService {
         if (request.getUris() == null) {
             hits.addAll(repository.findAllByTimestampIsAfterAndTimestampIsBefore(start, end));
         } else {
-            Collection<String> uris = List.of(request.getUris());
+            List<String> uris = List.of(request.getUris());
             hits.addAll(repository.findAllByTimestampIsAfterAndTimestampIsBeforeAndUriIsIn(start, end, uris));
         }
         return hits;

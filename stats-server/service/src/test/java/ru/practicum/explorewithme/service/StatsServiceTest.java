@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,7 +38,7 @@ public class StatsServiceTest {
     private List<ViewStatsDto> stats;
     private LocalDateTime start;
     private LocalDateTime end;
-    private Collection<String> uris;
+    private List<String> uris;
     private List<EndpointHit> hits;
 
     @BeforeEach
