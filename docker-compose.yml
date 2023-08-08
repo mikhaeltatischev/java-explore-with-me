@@ -1,15 +1,42 @@
 version: '3.1'
 services:
   stats-server:
+    build: stats-server/service
+    image: java-explore-with-me-stats-server
+    container_name: ewm-stats
     ports:
       - "9090:9090"
+      - "9091:9091"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm-stats-db:5432/explorewithme
 
   stats-db:
     image: postgres:14-alpine
+    container_name: ewm-stats-db
+    ports:
+      - "6542:5432"
+    environment:
+      - POSTGRES_DB=explorewithme
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
 
   ewm-service:
+    build: ewm-service
+    image: java-explore-with-me-ewm-service
+    container_name: ewm-main
     ports:
       - "8080:8080"
+      - "8081:8081"
+    environment:
+      - STATS_SERVICE_URL=http://stats-server:9090
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm-main-db/explorewithmemain
 
   ewm-db:
     image: postgres:14-alpine
+    container_name: ewm-main-db
+    ports:
+      - "6541:5432"
+    environment:
+      - POSTGRES_DB=explorewithmemain
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
