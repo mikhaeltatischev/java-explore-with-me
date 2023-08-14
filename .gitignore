@@ -34,3 +34,4 @@ build/
 
 ### DB ###
 stats-server/service/db
+ewm-service/db
