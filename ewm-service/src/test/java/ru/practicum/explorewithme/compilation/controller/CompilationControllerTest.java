@@ -34,9 +34,9 @@ public class CompilationControllerTest {
 
     @Test
     public void getCompilationsWhenMethodInvokeReturnCompilations() {
-        when(compilationService.getCompilations(false, 0 , 10)).thenReturn(compilations);
+        when(compilationService.getCompilations(false, 0, 10)).thenReturn(compilations);
 
-        assertEquals(compilations, controller.getCompilations(false, 0 , 10));
+        assertEquals(compilations, controller.getCompilations(false, 0, 10));
     }
 
     @Test

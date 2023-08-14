@@ -108,9 +108,9 @@ public class AdminControllerTest {
 
     @Test
     public void getUsersWhenMethodInvokeReturnUsers() {
-        when(userService.get(ids, 0 , 10)).thenReturn(users);
+        when(userService.get(ids, 0, 10)).thenReturn(users);
 
-        assertEquals(users, controller.getUsers(ids, 0 , 10));
+        assertEquals(users, controller.getUsers(ids, 0, 10));
     }
 
     @Test

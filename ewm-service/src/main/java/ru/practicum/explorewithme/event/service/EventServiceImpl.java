@@ -154,7 +154,7 @@ public class EventServiceImpl implements EventService {
         List<User> users = findUsers(parameters.getUsers());
         List<Status> statuses = findStates(parameters.getStates());
 
-        if (users != null && statuses != null && categories != null ) {
+        if (users != null && statuses != null && categories != null) {
             foundEvents = repository.findAllByInitiatorInAndStateInAndCategoryInAndEventDateIsAfterAndEventDateIsBefore(users,
                     statuses, categories, parameters.getRangeStart(), parameters.getRangeEnd(), parameters.getPageRequest());
         } else if (users != null && statuses != null) {

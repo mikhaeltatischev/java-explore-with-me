@@ -18,7 +18,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static org.springframework.http.ResponseEntity.status;
 import static ru.practicum.stats.model.DtoMapper.toDto;
 import static ru.practicum.stats.model.DtoMapper.toHit;
 
@@ -103,7 +102,7 @@ public class StatsServiceImpl implements StatsService {
 
         if (request.getUris() != null && request.getUnique()) {
             hits.addAll(repository.findAllUniqueAndByUri(start, end, request.getUris()));
-        } else if (request.getUris() != null){
+        } else if (request.getUris() != null) {
             hits.addAll(repository.findAllByTimestampIsAfterAndTimestampIsBeforeAndUriIsIn(start, end, request.getUris()));
         } else if (request.getUnique()) {
             hits.addAll(repository.findAllUnique(start, end));
