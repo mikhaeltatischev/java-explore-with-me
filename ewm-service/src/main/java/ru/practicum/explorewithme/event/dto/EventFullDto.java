@@ -1,14 +1,18 @@
 package ru.practicum.explorewithme.event.dto;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 import ru.practicum.explorewithme.category.dto.CategoryDto;
 import ru.practicum.explorewithme.location.dto.LocationDto;
 import ru.practicum.explorewithme.user.dto.UserShortDto;
 
-@Data
+@Getter
 @Builder
-public class EventFullDto {
+@ToString
+@EqualsAndHashCode(of = "id")
+public final class EventFullDto {
 
     private Long id;
     private String annotation;

@@ -5,6 +5,7 @@ import ru.practicum.explorewithme.category.dto.CategoryMapper;
 import ru.practicum.explorewithme.category.model.Category;
 import ru.practicum.explorewithme.event.model.Event;
 import ru.practicum.explorewithme.event.model.Status;
+import ru.practicum.explorewithme.location.model.Location;
 import ru.practicum.explorewithme.user.dto.UserMapper;
 import ru.practicum.explorewithme.user.dto.UserShortDto;
 import ru.practicum.explorewithme.user.model.User;
@@ -73,7 +74,7 @@ public class EventMapper {
                 .collect(Collectors.toList());
     }
 
-    public static Event toEvent(NewEventDto event, User user, Category category) {
+    public static Event toEvent(NewEventDto event, User user, Category category, Location location) {
         Boolean paid;
         Integer limit;
         Boolean requestModeration;
@@ -94,6 +95,7 @@ public class EventMapper {
             requestModeration = event.getRequestModeration();
         }
         return Event.builder()
+                .location(location)
                 .annotation(event.getAnnotation())
                 .category(category)
                 .description(event.getDescription())

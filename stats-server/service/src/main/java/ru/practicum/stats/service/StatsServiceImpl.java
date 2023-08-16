@@ -117,10 +117,6 @@ public class StatsServiceImpl implements StatsService {
         request.setEnd(URLDecoder.decode(request.getEnd()));
     }
 
-    private String decodeTimestamp(String time) {
-        return URLDecoder.decode(time);
-    }
-
     private void checkDate(LocalDateTime start, LocalDateTime end) {
         if (end.isBefore(start)) {
             throw new FieldIsNotValidException("Start, End");

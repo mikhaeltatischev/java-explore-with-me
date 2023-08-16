@@ -90,8 +90,6 @@ public class EventServiceImpl implements EventService {
         List<Event> foundEvents;
         client.addHit(APP, request.getRequestURI(), request.getRemoteAddr(), LocalDateTime.now().format(FORMATTER));
 
-        // Как избежать такого в методах? Сидел целый день возился с запросами в репозитории, чтобы нулевые значения в параметры передавать
-        // ничего не получилось, только время зря потратил, смотрел в сторону criteria, это помогло бы? Или это вообще норма?)
         if (parameters.getText() != null && parameters.getPaid() != null && categories != null && parameters.getOnlyAvailable()) {
             foundEvents = repository.findAllOnlyAvailable(parameters.getText(), parameters.getPaid(), parameters.getRangeStart(),
                     parameters.getRangeEnd(), categories, parameters.getPageRequest());
@@ -200,8 +198,8 @@ public class EventServiceImpl implements EventService {
         User user = findUser(userId);
         Category category = findCategory(newEvent.getCategory());
         checkValidEventDate(newEvent.getEventDate());
-        newEvent.setLocation(findOrCreateLocation(newEvent.getLocation()));
-        Event savedEvent = repository.save(toEvent(newEvent, user, category));
+        Location location = (findOrCreateLocation(newEvent.getLocation()));
+        Event savedEvent = repository.save(toEvent(newEvent, user, category, location));
 
         log.info("Event: " + savedEvent + " saved");
 

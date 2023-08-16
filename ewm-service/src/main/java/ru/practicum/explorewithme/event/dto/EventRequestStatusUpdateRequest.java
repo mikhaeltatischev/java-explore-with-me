@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.util.List;
 
 @Getter
-public class EventRequestStatusUpdateRequest {
+public final class EventRequestStatusUpdateRequest {
 
     private List<Long> requestIds;
     private String status;

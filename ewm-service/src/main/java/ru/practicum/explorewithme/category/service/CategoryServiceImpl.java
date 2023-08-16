@@ -1,5 +1,6 @@
 package ru.practicum.explorewithme.category.service;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,10 @@ import static ru.practicum.explorewithme.category.dto.CategoryMapper.toDto;
 @Slf4j
 @Service
 @NoArgsConstructor
+@AllArgsConstructor(onConstructor_ = @Autowired)
 public class CategoryServiceImpl implements CategoryService {
 
     private CategoryRepository repository;
-
-    @Autowired
-    public CategoryServiceImpl(CategoryRepository repository) {
-        this.repository = repository;
-    }
 
     @Override
     public CategoryDto create(NewCategoryDto newCategory) {

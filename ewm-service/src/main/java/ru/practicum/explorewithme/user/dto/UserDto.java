@@ -8,10 +8,11 @@ import javax.validation.constraints.NotBlank;
 
 @Getter
 @Builder
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class UserDto {
+public final class UserDto {
 
     private Long id;
     @Email

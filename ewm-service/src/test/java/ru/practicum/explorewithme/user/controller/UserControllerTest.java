@@ -10,6 +10,8 @@ import ru.practicum.explorewithme.event.dto.*;
 import ru.practicum.explorewithme.event.service.EventService;
 import ru.practicum.explorewithme.request.dto.ParticipationRequestDto;
 import ru.practicum.explorewithme.request.service.ParticipationRequestService;
+import ru.practicum.explorewithme.user.dto.UserDto;
+import ru.practicum.explorewithme.user.service.UserService;
 
 import java.util.List;
 
@@ -23,12 +25,17 @@ public class UserControllerTest {
     private ParticipationRequestService requestService;
 
     @Mock
+    private UserService userService;
+
+    @Mock
     private EventService eventService;
 
     @InjectMocks
     private UserController controller;
 
+    private List<UserDto> users;
     private List<EventShortDto> events;
+    private UserDto userDto;
     private UpdateEventUserRequest updateEventUserRequest;
     private EventRequestStatusUpdateRequest eventRequestStatusUpdateRequest;
     private EventRequestStatusUpdateResult eventRequestStatusUpdateResult;
@@ -38,6 +45,7 @@ public class UserControllerTest {
     private ParticipationRequestDto participationRequestDto;
     private long userId;
     private long eventId;
+    private List<Long> ids;
 
     @BeforeEach
     public void setUp() {
@@ -46,6 +54,12 @@ public class UserControllerTest {
 
         eventShortDto = EventShortDto.builder()
                 .title("title")
+                .build();
+
+        userDto = UserDto.builder()
+                .id(userId)
+                .email("mail@mail.ru")
+                .name("name name")
                 .build();
 
         updateEventUserRequest = new UpdateEventUserRequest();
@@ -62,7 +76,30 @@ public class UserControllerTest {
                 .title("title")
                 .build();
 
+        users = List.of(userDto);
         events = List.of(eventShortDto);
+        ids = List.of(userId);
+    }
+
+    @Test
+    public void getUsersWhenMethodInvokeReturnUsers() {
+        when(userService.get(ids, 0, 10)).thenReturn(users);
+
+        assertEquals(users, controller.getUsers(ids, 0, 10));
+    }
+
+    @Test
+    public void createUserWhenMethodInvokeReturnUser() {
+        when(userService.add(userDto)).thenReturn(userDto);
+
+        assertEquals(userDto, controller.createUser(userDto));
+    }
+
+    @Test
+    public void deleteUserWhenMethodInvokeReturnUser() {
+        when(userService.delete(userId)).thenReturn(userDto);
+
+        assertEquals(userDto, controller.deleteUser(userId));
     }
 
     @Test

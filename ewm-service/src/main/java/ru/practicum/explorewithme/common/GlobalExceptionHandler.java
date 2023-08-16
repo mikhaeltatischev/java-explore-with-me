@@ -12,7 +12,6 @@ import ru.practicum.explorewithme.event.exception.EventBadStateException;
 import ru.practicum.explorewithme.event.exception.EventBadTimeException;
 import ru.practicum.explorewithme.event.exception.EventIsNotPublishedException;
 import ru.practicum.explorewithme.event.exception.EventNotFoundException;
-import ru.practicum.explorewithme.request.exception.BadRequestStatusException;
 import ru.practicum.explorewithme.request.exception.DuplicateRequestException;
 import ru.practicum.explorewithme.request.exception.ParticipantLimitException;
 import ru.practicum.explorewithme.request.exception.RequestOwnerException;
@@ -138,19 +137,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
     public ApiError handleParticipantLimitException(final ParticipantLimitException e) {
-        StackTraceElement[] stackTrace = e.getStackTrace();
-        List<String> errors = new ArrayList<>();
-        for (StackTraceElement stackTraceElement : stackTrace) {
-            errors.add(stackTraceElement + "\n");
-        }
-
-        return new ApiError(errors, e.getMessage(), e.getLocalizedMessage(),
-                HttpStatus.CONFLICT.toString(), LocalDateTime.now().format(FORMATTER));
-    }
-
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public ApiError handleBadRequestStatusException(final BadRequestStatusException e) {
         StackTraceElement[] stackTrace = e.getStackTrace();
         List<String> errors = new ArrayList<>();
         for (StackTraceElement stackTraceElement : stackTrace) {

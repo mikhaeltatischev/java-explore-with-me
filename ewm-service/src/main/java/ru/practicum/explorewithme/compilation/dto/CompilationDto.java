@@ -1,19 +1,18 @@
 package ru.practicum.explorewithme.compilation.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import ru.practicum.explorewithme.event.dto.EventShortDto;
 
 import java.util.List;
 
-@Data
+@Getter
 @Builder
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class CompilationDto {
+@EqualsAndHashCode(of = "id")
+public final class CompilationDto {
 
     private Long id;
     private List<EventShortDto> events;

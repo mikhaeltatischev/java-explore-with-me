@@ -1,19 +1,18 @@
 package ru.practicum.explorewithme.category.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@Data
+@Getter
 @Builder
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategoryDto {
+@EqualsAndHashCode(of = "id")
+public final class CategoryDto {
 
     private Long id;
     @NotBlank

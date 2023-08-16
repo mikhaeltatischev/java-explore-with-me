@@ -1,5 +1,6 @@
 package ru.practicum.explorewithme.user.service;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +19,10 @@ import static ru.practicum.explorewithme.user.dto.UserMapper.toUser;
 @Slf4j
 @Service
 @NoArgsConstructor
+@AllArgsConstructor(onConstructor_ = @Autowired)
 public class UserServiceImpl implements UserService {
 
     private UserRepository repository;
-
-    @Autowired
-    public UserServiceImpl(UserRepository repository) {
-        this.repository = repository;
-    }
 
     @Override
     public List<UserDto> get(List<Long> ids, int from, int size) {

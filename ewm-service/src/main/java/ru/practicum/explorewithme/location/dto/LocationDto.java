@@ -1,11 +1,13 @@
 package ru.practicum.explorewithme.location.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.ToString;
 
-@Data
+@Getter
+@ToString
 @AllArgsConstructor
-public class LocationDto {
+public final class LocationDto {
 
     private float lat;
     private float lon;

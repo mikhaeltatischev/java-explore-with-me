@@ -1,17 +1,16 @@
 package ru.practicum.explorewithme.event.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import ru.practicum.explorewithme.category.dto.CategoryDto;
 import ru.practicum.explorewithme.user.dto.UserShortDto;
 
-@Data
+@Getter
 @Builder
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class EventShortDto {
+@EqualsAndHashCode(of = "id")
+public final class EventShortDto {
 
     private Long id;
     private String annotation;

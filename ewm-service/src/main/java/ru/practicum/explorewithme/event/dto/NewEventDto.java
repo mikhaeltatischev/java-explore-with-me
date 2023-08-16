@@ -1,16 +1,17 @@
 package ru.practicum.explorewithme.event.dto;
 
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import ru.practicum.explorewithme.location.model.Location;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@Data
+@Getter
+@ToString
+@AllArgsConstructor
 @RequiredArgsConstructor
-public class NewEventDto {
+public final class NewEventDto {
 
     @NotBlank
     @Length(min = 20, max = 2000)
