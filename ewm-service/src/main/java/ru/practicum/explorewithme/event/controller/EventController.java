@@ -2,6 +2,7 @@ package ru.practicum.explorewithme.event.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.explorewithme.category.dto.CategoryDto;
 import ru.practicum.explorewithme.category.dto.NewCategoryDto;
@@ -15,8 +16,10 @@ import ru.practicum.explorewithme.event.service.EventService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
+@Validated
 @RestController
 @RequiredArgsConstructor
 public class EventController {
@@ -34,24 +37,24 @@ public class EventController {
                                           @RequestParam(required = false, name = "onlyAvailable") boolean onlyAvailable,
                                           @RequestParam(required = false, name = "sort") String sort,
                                           @RequestParam(defaultValue = "0", name = "from") int from,
-                                          @RequestParam(defaultValue = "10", name = "size") int size,
+                                          @Min(1) @RequestParam(defaultValue = "10", name = "size") int size,
                                           HttpServletRequest request) {
         return service.findEvents(PublicSearchParameters.of(text, categories, paid, rangeStart, rangeEnd, onlyAvailable, sort, from, size), request);
     }
 
     @GetMapping("/admin/events")
     @ResponseStatus(HttpStatus.OK)
-    public List<EventFullDto> findEvents(@RequestParam(required = false) List<Long> users,
-                                         @RequestParam(required = false) List<String> states,
-                                         @RequestParam(required = false) List<Long> categories,
-                                         @RequestParam(required = false) String rangeStart,
-                                         @RequestParam(required = false) String rangeEnd,
-                                         @RequestParam(defaultValue = "0") int from,
-                                         @RequestParam(defaultValue = "10") int size) {
+    public List<EventFullDto> findEventsForAdmin(@RequestParam(required = false) List<Long> users,
+                                                 @RequestParam(required = false) List<String> states,
+                                                 @RequestParam(required = false) List<Long> categories,
+                                                 @RequestParam(required = false) String rangeStart,
+                                                 @RequestParam(required = false) String rangeEnd,
+                                                 @RequestParam(defaultValue = "0") int from,
+                                                 @Min(1) @RequestParam(defaultValue = "10") int size) {
         return service.findEventsForAdmin(AdminSearchParameters.of(users, states, categories, rangeStart, rangeEnd, from, size));
     }
 
-    @GetMapping("/admin/{id}")
+    @GetMapping("/events/{id}")
     @ResponseStatus(HttpStatus.OK)
     public EventFullDto findEvent(@PathVariable long id,
                                   HttpServletRequest request) {
@@ -59,7 +62,7 @@ public class EventController {
     }
 
 
-    @PatchMapping("/events/{eventId}")
+    @PatchMapping("/admin/events/{eventId}")
     @ResponseStatus(HttpStatus.OK)
     public EventFullDto editEvent(@PathVariable long eventId,
                                   @Valid @RequestBody UpdateEventAdminRequest request) {

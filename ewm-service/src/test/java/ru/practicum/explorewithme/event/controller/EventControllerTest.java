@@ -56,7 +56,7 @@ public class EventControllerTest {
     public void findEventsWhenMethodInvokeReturnEvents() {
         when(eventService.findEventsForAdmin(any())).thenReturn(events);
 
-        assertEquals(events, controller.findEvents(List.of(userId), List.of("PUBLISHED"), List.of(1L),
+        assertEquals(events, controller.findEventsForAdmin(List.of(userId), List.of("PUBLISHED"), List.of(1L),
                 "2023-08-14 19:13:51", "2024-08-14 19:13:51", 0, 10));
     }
 
