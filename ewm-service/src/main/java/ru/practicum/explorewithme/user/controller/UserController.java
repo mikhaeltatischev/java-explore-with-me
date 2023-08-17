@@ -27,7 +27,7 @@ public class UserController {
     @GetMapping("/admin/users")
     @ResponseStatus(HttpStatus.OK)
     public List<UserDto> getUsers(@RequestParam(required = false) List<Long> ids,
-                                  @RequestParam(defaultValue = "0") int from,
+                                  @Min(0) @RequestParam(defaultValue = "0") int from,
                                   @Min(1) @RequestParam(defaultValue = "10") int size) {
         return userService.get(ids, from, size);
     }
@@ -46,7 +46,7 @@ public class UserController {
 
     @GetMapping("/users/{userId}/events")
     public List<EventShortDto> getEventsForCurrentUser(@PathVariable long userId,
-                                                       @RequestParam(defaultValue = "0") int from,
+                                                       @Min(0) @RequestParam(defaultValue = "0") int from,
                                                        @Min(1) @RequestParam(defaultValue = "10") int size) {
         return eventService.findEvents(userId, from, size);
     }

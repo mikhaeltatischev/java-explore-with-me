@@ -8,27 +8,27 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Getter
+@Builder
 @ToString
 @AllArgsConstructor
-@RequiredArgsConstructor
 public final class NewEventDto {
 
     @NotBlank
     @Length(min = 20, max = 2000)
-    private String annotation;
+    private final String annotation;
     @NotNull
-    private Long category;
+    private final Long category;
     @NotBlank
     @Length(min = 20, max = 7000)
-    private String description;
+    private final String description;
     @NotBlank
-    private String eventDate;
+    private final String eventDate;
     @NotNull
-    private Location location;
-    private Boolean paid;
-    private Integer participantLimit;
-    private Boolean requestModeration;
+    private final Location location;
+    private final Boolean paid;
+    private final Integer participantLimit;
+    private final Boolean requestModeration;
     @NotBlank
     @Length(min = 3, max = 120)
-    private String title;
+    private final String title;
 }

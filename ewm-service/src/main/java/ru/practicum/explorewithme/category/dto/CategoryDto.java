@@ -9,14 +9,13 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Builder
 @ToString
-@NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public final class CategoryDto {
 
-    private Long id;
+    private final Long id;
     @NotBlank
     @NotNull
     @Length(max = 50)
-    private String name;
+    private final String name;
 }

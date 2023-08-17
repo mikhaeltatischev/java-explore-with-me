@@ -10,6 +10,7 @@ import ru.practicum.explorewithme.compilation.dto.CompilationDto;
 import ru.practicum.explorewithme.compilation.dto.NewCompilationDto;
 import ru.practicum.explorewithme.compilation.dto.UpdateCompilationRequest;
 import ru.practicum.explorewithme.compilation.service.CompilationService;
+import ru.practicum.explorewithme.event.model.Event;
 
 import java.util.List;
 
@@ -34,7 +35,9 @@ public class CompilationControllerTest {
     @BeforeEach
     public void setUp() {
         compId = 1L;
-        compilationDto = new CompilationDto();
+        compilationDto = CompilationDto.builder()
+                .id(compId)
+                .build();
         compilations = List.of(compilationDto);
 
         updateRequest = new UpdateCompilationRequest();

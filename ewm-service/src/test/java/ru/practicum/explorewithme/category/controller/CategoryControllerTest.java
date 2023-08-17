@@ -32,7 +32,7 @@ public class CategoryControllerTest {
     @BeforeEach
     public void setUp() {
         categoryId = 1L;
-        category = new CategoryDto();
+        category = new CategoryDto(categoryId, "name");
         categories = List.of(category);
 
         newCategoryDto = NewCategoryDto.builder()

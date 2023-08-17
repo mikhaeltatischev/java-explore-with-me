@@ -9,6 +9,7 @@ import ru.practicum.explorewithme.category.dto.NewCategoryDto;
 import ru.practicum.explorewithme.category.service.CategoryService;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @Validated
@@ -20,8 +21,8 @@ public class CategoryController {
 
     @GetMapping("/categories")
     @ResponseStatus(HttpStatus.OK)
-    public List<CategoryDto> getCategories(@RequestParam(defaultValue = "0") int from,
-                                           @RequestParam(defaultValue = "10") int size) {
+    public List<CategoryDto> getCategories(@Min(0) @RequestParam(defaultValue = "0") int from,
+                                           @Min(1) @RequestParam(defaultValue = "10") int size) {
         return service.getCategories(from, size);
     }
 

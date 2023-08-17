@@ -1,5 +1,7 @@
 package ru.practicum.explorewithme.event.service;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,18 +41,18 @@ import static ru.practicum.explorewithme.request.dto.RequestMapper.toDto;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor(onConstructor_ = @Autowired)
+@AllArgsConstructor(onConstructor_ = @Autowired)
 public class EventServiceImpl implements EventService {
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private static final String APP = "ewm-service";
 
-    private final StatsClient client;
-    private final EventRepository repository;
-    private final UserRepository userRepository;
-    private final CategoryRepository categoryRepository;
-    private final LocationRepository locationRepository;
-    private final ParticipationRequestRepository requestRepository;
+    private StatsClient client;
+    private EventRepository repository;
+    private UserRepository userRepository;
+    private CategoryRepository categoryRepository;
+    private LocationRepository locationRepository;
+    private ParticipationRequestRepository requestRepository;
 
     @Override
     public EventFullDto findEventPublic(long eventId, HttpServletRequest request) {

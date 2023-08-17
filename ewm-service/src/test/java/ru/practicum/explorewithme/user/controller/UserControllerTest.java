@@ -64,9 +64,13 @@ public class UserControllerTest {
 
         updateEventUserRequest = new UpdateEventUserRequest();
 
-        newEvent = new NewEventDto();
+        newEvent = NewEventDto.builder()
+                .title("title")
+                .build();
 
-        participationRequestDto = new ParticipationRequestDto();
+        participationRequestDto = ParticipationRequestDto.builder()
+                .id(1L)
+                .build();
 
         eventRequestStatusUpdateRequest = new EventRequestStatusUpdateRequest();
 

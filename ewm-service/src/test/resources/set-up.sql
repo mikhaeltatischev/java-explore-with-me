@@ -2,6 +2,7 @@ DELETE FROM categories CASCADE;
 DELETE FROM locations CASCADE;
 DELETE FROM users CASCADE;
 DELETE FROM events CASCADE;
+DELETE FROM compilations CASCADE;
 
 INSERT INTO categories (id, name)
 VALUES (1, 'drama'),
@@ -19,3 +20,7 @@ INSERT INTO events (annotation, category_id, confirmed_requests, created_on, des
  paid, participant_limit, published_on, request_moderation, state, title, views)
 VALUES ('annotation', 1, 0, '2023-08-14 19:13:51', 'description', '2023-08-14 19:13:51', 1, 1, 'true', 0, '2023-08-14 19:13:51',
 'false', 'PUBLISHED', 'title', 0);
+
+INSERT INTO compilations (pinned, title)
+VALUES ('true', 'title'),
+       ('false', 'titleTwo');

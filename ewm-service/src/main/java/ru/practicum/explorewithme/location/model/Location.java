@@ -1,6 +1,7 @@
 package ru.practicum.explorewithme.location.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 
 @Entity(name = "locations")
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Location {

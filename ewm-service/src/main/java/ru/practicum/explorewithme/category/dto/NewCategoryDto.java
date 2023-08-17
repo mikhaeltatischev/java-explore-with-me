@@ -8,10 +8,9 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Builder
 @AllArgsConstructor
-@RequiredArgsConstructor
 public final class NewCategoryDto {
 
     @NotBlank
     @Length(max = 50)
-    private String name;
+    private final String name;
 }

@@ -14,20 +14,20 @@ import ru.practicum.explorewithme.user.dto.UserShortDto;
 @EqualsAndHashCode(of = "id")
 public final class EventFullDto {
 
-    private Long id;
-    private String annotation;
-    private CategoryDto category;
-    private Long confirmedRequests;
-    private String createdOn;
-    private String description;
-    private String eventDate;
-    private UserShortDto initiator;
-    private LocationDto location;
-    private Boolean paid;
-    private Integer participantLimit;
-    private String publishedOn;
-    private Boolean requestModeration;
-    private String state;
-    private String title;
-    private Long views;
+    private final Long id;
+    private final String annotation;
+    private final CategoryDto category;
+    private final Long confirmedRequests;
+    private final String createdOn;
+    private final String description;
+    private final String eventDate;
+    private final UserShortDto initiator;
+    private final LocationDto location;
+    private final Boolean paid;
+    private final Integer participantLimit;
+    private final String publishedOn;
+    private final Boolean requestModeration;
+    private final String state;
+    private final String title;
+    private final Long views;
 }

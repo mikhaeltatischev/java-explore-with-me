@@ -9,14 +9,13 @@ import java.util.List;
 @Getter
 @Builder
 @ToString
-@NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public final class CompilationDto {
 
-    private Long id;
-    private List<EventShortDto> events;
-    private boolean pinned;
+    private final Long id;
+    private final List<EventShortDto> events;
+    private final boolean pinned;
     @Length(max = 50)
-    private String title;
+    private final String title;
 }

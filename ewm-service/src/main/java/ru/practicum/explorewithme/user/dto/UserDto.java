@@ -10,16 +10,15 @@ import javax.validation.constraints.NotBlank;
 @Builder
 @ToString
 @AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public final class UserDto {
 
-    private Long id;
+    private final Long id;
     @Email
     @NotBlank
     @Length(min = 6, max = 254)
-    private String email;
+    private final String email;
     @NotBlank
     @Length(min = 2, max = 250)
-    private String name;
+    private final String name;
 }

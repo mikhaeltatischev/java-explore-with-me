@@ -20,7 +20,7 @@ import static ru.practicum.explorewithme.category.dto.CategoryMapper.toDto;
 @Slf4j
 @Service
 @NoArgsConstructor
-@AllArgsConstructor(onConstructor_ = @Autowired)
+@AllArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
 
     private CategoryRepository repository;

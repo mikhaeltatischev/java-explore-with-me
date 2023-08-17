@@ -3,14 +3,14 @@ package ru.practicum.explorewithme.request.dto;
 import lombok.*;
 
 @Getter
+@Builder
 @ToString
-@NoArgsConstructor
 @AllArgsConstructor
 public final class ParticipationRequestDto {
 
-    private Long id;
-    private String created;
-    private Long event;
-    private Long requester;
-    private String status;
+    private final Long id;
+    private final String created;
+    private final Long event;
+    private final Long requester;
+    private final String status;
 }
