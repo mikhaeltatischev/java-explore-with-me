@@ -36,7 +36,7 @@ public class EventController {
                                           @RequestParam(required = false, name = "rangeEnd") String rangeEnd,
                                           @RequestParam(required = false, name = "onlyAvailable") boolean onlyAvailable,
                                           @RequestParam(required = false, name = "sort") String sort,
-                                          @RequestParam(defaultValue = "0", name = "from") int from,
+                                          @Min(0) @RequestParam(defaultValue = "0", name = "from") int from,
                                           @Min(1) @RequestParam(defaultValue = "10", name = "size") int size,
                                           HttpServletRequest request) {
         return service.findEvents(PublicSearchParameters.of(text, categories, paid, rangeStart, rangeEnd, onlyAvailable, sort, from, size), request);
@@ -49,7 +49,7 @@ public class EventController {
                                                  @RequestParam(required = false) List<Long> categories,
                                                  @RequestParam(required = false) String rangeStart,
                                                  @RequestParam(required = false) String rangeEnd,
-                                                 @RequestParam(defaultValue = "0") int from,
+                                                 @Min(0) @RequestParam(defaultValue = "0") int from,
                                                  @Min(1) @RequestParam(defaultValue = "10") int size) {
         return service.findEventsForAdmin(AdminSearchParameters.of(users, states, categories, rangeStart, rangeEnd, from, size));
     }

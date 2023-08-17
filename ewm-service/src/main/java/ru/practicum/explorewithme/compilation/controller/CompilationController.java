@@ -9,6 +9,7 @@ import ru.practicum.explorewithme.compilation.dto.UpdateCompilationRequest;
 import ru.practicum.explorewithme.compilation.service.CompilationService;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
@@ -20,8 +21,8 @@ public class CompilationController {
     @GetMapping("/compilations")
     @ResponseStatus(HttpStatus.OK)
     public List<CompilationDto> getCompilations(@RequestParam(required = false) Boolean pinned,
-                                                @RequestParam(defaultValue = "0") int from,
-                                                @RequestParam(defaultValue = "10") int size) {
+                                                @Min(0) @RequestParam(defaultValue = "0") int from,
+                                                @Min(1) @RequestParam(defaultValue = "10") int size) {
         return service.getCompilations(pinned, from, size);
     }
 
