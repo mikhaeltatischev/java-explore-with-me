@@ -12,6 +12,7 @@ import ru.practicum.explorewithme.dto.EndpointHitDto;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -19,6 +20,7 @@ public class StatsClient extends BaseClient {
 
     private static final String STATS_PATH = "/stats?start={start}&end={end}&unique={unique}&uris={uris}";
     private static final String STATS_PATH_WITHOUT_URIS = "/stats?start={start}&end={end}&unique={unique}";
+    private static final String STATS_PATH_UNIQUE = "/unique?uri={uri}&ip={ip}";
     private static final String HIT_PATH = "/hit";
 
     @Autowired
@@ -37,7 +39,7 @@ public class StatsClient extends BaseClient {
         return post(HIT_PATH, hit);
     }
 
-    public ResponseEntity<Object> getStats(String start, String end, @Nullable String[] uris, Boolean unique) {
+    public ResponseEntity<Object> getStats(String start, String end, @Nullable List<String> uris, Boolean unique) {
         Map<String, Object> parameters;
 
         if (uris == null) {
@@ -52,6 +54,19 @@ public class StatsClient extends BaseClient {
                     "unique", unique);
             return get(STATS_PATH, parameters);
         }
+    }
+
+    public Boolean checkUnique(String uri, String ip) {
+        Map<String, Object> parameters = Map.of("ip", ip,
+                                                "uri", uri);
+
+        Object response = get(STATS_PATH_UNIQUE, parameters).getBody();
+        String re = response.toString();
+
+        if (response.equals(true)) {
+            return true;
+        }
+        return false;
     }
 
     private String encodeValue(String value) {
