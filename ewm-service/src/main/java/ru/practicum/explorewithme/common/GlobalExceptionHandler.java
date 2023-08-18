@@ -39,21 +39,8 @@ public class GlobalExceptionHandler {
 
         log.info(errors + "MESSAGE: " + e.getMessage());
 
-        return new ApiError(errors, e.getMessage(), e.getLocalizedMessage(),
+        return new ApiError(errors, e.getMessage(), "Runtime exception",
                 HttpStatus.INTERNAL_SERVER_ERROR.toString(), LocalDateTime.now().format(FORMATTER));
-    }
-
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiError handleEventBadTimeException(final EventBadTimeException e) {
-        StackTraceElement[] stackTrace = e.getStackTrace();
-        List<String> errors = new ArrayList<>();
-        for (StackTraceElement stackTraceElement : stackTrace) {
-            errors.add(stackTraceElement + "\n");
-        }
-
-        return new ApiError(errors, e.getMessage(), e.getLocalizedMessage(),
-                HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now().format(FORMATTER));
     }
 
     @ExceptionHandler
@@ -65,7 +52,7 @@ public class GlobalExceptionHandler {
             errors.add(stackTraceElement + "\n");
         }
 
-        return new ApiError(errors, e.getMessage(), e.getLocalizedMessage(),
+        return new ApiError(errors, e.getMessage(), "Field is not valid",
                 HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now().format(FORMATTER));
     }
 
@@ -78,7 +65,7 @@ public class GlobalExceptionHandler {
             errors.add(stackTraceElement + "\n");
         }
 
-        return new ApiError(errors, e.getMessage(), e.getLocalizedMessage(),
+        return new ApiError(errors, e.getMessage(), "Inappropriate status",
                 HttpStatus.CONFLICT.toString(), LocalDateTime.now().format(FORMATTER));
     }
 
@@ -91,7 +78,7 @@ public class GlobalExceptionHandler {
             errors.add(stackTraceElement + "\n");
         }
 
-        return new ApiError(errors, e.getMessage(), e.getLocalizedMessage(),
+        return new ApiError(errors, e.getMessage(), "The required object was not found",
                 HttpStatus.NOT_FOUND.toString(), LocalDateTime.now().format(FORMATTER));
     }
 
@@ -104,7 +91,7 @@ public class GlobalExceptionHandler {
             errors.add(stackTraceElement + "\n");
         }
 
-        return new ApiError(errors, e.getMessage(), e.getLocalizedMessage(),
+        return new ApiError(errors, e.getMessage(), "The required object was not found",
                 HttpStatus.NOT_FOUND.toString(), LocalDateTime.now().format(FORMATTER));
     }
 
@@ -117,7 +104,7 @@ public class GlobalExceptionHandler {
             errors.add(stackTraceElement + "\n");
         }
 
-        return new ApiError(errors, e.getMessage(), e.getLocalizedMessage(),
+        return new ApiError(errors, e.getMessage(), "The required object was not found",
                 HttpStatus.NOT_FOUND.toString(), LocalDateTime.now().format(FORMATTER));
     }
 
@@ -130,7 +117,7 @@ public class GlobalExceptionHandler {
             errors.add(stackTraceElement + "\n");
         }
 
-        return new ApiError(errors, e.getMessage(), e.getLocalizedMessage(),
+        return new ApiError(errors, e.getMessage(), "The required object was not found",
                 HttpStatus.NOT_FOUND.toString(), LocalDateTime.now().format(FORMATTER));
     }
 
@@ -143,7 +130,7 @@ public class GlobalExceptionHandler {
             errors.add(stackTraceElement + "\n");
         }
 
-        return new ApiError(errors, e.getMessage(), e.getLocalizedMessage(),
+        return new ApiError(errors, e.getMessage(), "Request limit exceeded",
                 HttpStatus.CONFLICT.toString(), LocalDateTime.now().format(FORMATTER));
     }
 
@@ -156,7 +143,7 @@ public class GlobalExceptionHandler {
             errors.add(stackTraceElement + "\n");
         }
 
-        return new ApiError(errors, e.getMessage(), e.getLocalizedMessage(),
+        return new ApiError(errors, e.getMessage(), "Repeated request",
                 HttpStatus.CONFLICT.toString(), LocalDateTime.now().format(FORMATTER));
     }
 
@@ -169,7 +156,7 @@ public class GlobalExceptionHandler {
             errors.add(stackTraceElement + "\n");
         }
 
-        return new ApiError(errors, e.getMessage(), e.getLocalizedMessage(),
+        return new ApiError(errors, e.getMessage(), "Wrong user",
                 HttpStatus.CONFLICT.toString(), LocalDateTime.now().format(FORMATTER));
     }
 
@@ -182,7 +169,7 @@ public class GlobalExceptionHandler {
             errors.add(stackTraceElement + "\n");
         }
 
-        return new ApiError(errors, e.getMessage(), e.getLocalizedMessage(),
+        return new ApiError(errors, e.getMessage(), "Only published events can be changed",
                 HttpStatus.CONFLICT.toString(), LocalDateTime.now().format(FORMATTER));
     }
 
@@ -195,7 +182,20 @@ public class GlobalExceptionHandler {
             errors.add(stackTraceElement + "\n");
         }
 
-        return new ApiError(errors, e.getMessage(), e.getLocalizedMessage(),
+        return new ApiError(errors, e.getMessage(), "Database error",
+                HttpStatus.CONFLICT.toString(), LocalDateTime.now().format(FORMATTER));
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ApiError handleEventBadTimeException(final EventBadTimeException e) {
+        StackTraceElement[] stackTrace = e.getStackTrace();
+        List<String> errors = new ArrayList<>();
+        for (StackTraceElement stackTraceElement : stackTrace) {
+            errors.add(stackTraceElement + "\n");
+        }
+
+        return new ApiError(errors, e.getMessage(), "Field 'time' is not valid",
                 HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now().format(FORMATTER));
     }
 }
