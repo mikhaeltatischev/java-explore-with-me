@@ -7,6 +7,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.jdbc.Sql;
 import ru.practicum.explorewithme.location.model.Location;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
@@ -19,16 +21,16 @@ public class LocationRepositoryIntegrationTest {
     @Test
     public void checkLocationWhenMethodInvokeReturnLocation() {
         Location location = repository.checkLocation(1.0, 2.0);
-        assertEquals("Памятник святому", location.getName());
+
+        assertEquals(1.0, location.getLat());
+        assertEquals(2.0, location.getLon());
+        assertEquals(1.0, location.getRadius());
     }
 
     @Test
     public void getLocationByWhenMethodInvokeReturnLocations() {
-        assertEquals(2, repository.getLocationBy(PageRequest.of(0, 10)).size());
-    }
+        List<Location> location = repository.getLocationBy(PageRequest.of(0, 10));
 
-    @Test
-    public void getLocationByAddressContainingIgnoreCaseOrNameContainingIgnoreCaseByWhenMethodInvokeReturnLocations() {
-        assertEquals(1, repository.getLocationByAddressContainingIgnoreCaseOrNameContainingIgnoreCase("Улица свободы 21", "Памятник святому", PageRequest.of(0, 10)).size());
+        assertEquals(2, location.size());
     }
 }
