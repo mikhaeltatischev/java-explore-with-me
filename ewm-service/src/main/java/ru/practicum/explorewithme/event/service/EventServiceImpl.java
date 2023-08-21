@@ -18,7 +18,6 @@ import ru.practicum.explorewithme.event.exception.NotInitiatorException;
 import ru.practicum.explorewithme.event.model.*;
 import ru.practicum.explorewithme.event.repository.EventRepository;
 import ru.practicum.explorewithme.location.dto.LocationDto;
-import ru.practicum.explorewithme.location.exception.LocationNotFoundException;
 import ru.practicum.explorewithme.location.exception.LocationsFieldsIsEmptyException;
 import ru.practicum.explorewithme.location.model.Location;
 import ru.practicum.explorewithme.location.repository.LocationRepository;
@@ -200,7 +199,7 @@ public class EventServiceImpl implements EventService {
             events = repository.findAllByLocationLatAndLocationLon(location.getLat(), location.getLon());
         } else if (location.getAddress() != null) {
             events = repository.findAllByLocationAddressIgnoreCase(location.getAddress());
-        } else if (location.getName() != null){
+        } else if (location.getName() != null) {
             events = repository.findAllByLocationNameIgnoreCase(location.getName());
         } else {
             throw new LocationsFieldsIsEmptyException();
