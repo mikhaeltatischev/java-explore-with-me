@@ -15,12 +15,12 @@ import javax.validation.constraints.Positive;
 public final class LocationDto {
 
     @NotNull
-    private Double lat;
+    private final Double lat;
     @NotNull
-    private Double lon;
+    private final Double lon;
     @Positive
-    private Double radius;
-    private String name;
-    private String address;
-    private String type;
+    private final Double radius;
+    private final String name;
+    private final String address;
+    private final String type;
 }

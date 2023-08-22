@@ -8,28 +8,10 @@ import java.util.stream.Collectors;
 public class LocationMapper {
 
     public static LocationDto toDto(Location location) {
-        String name;
-        String address;
-        String type;
-        Double radius;
-
-        if (location.getName() != null) {
-            name = location.getName();
-        } else {
-            name = null;
-        }
-
-        if (location.getAddress() != null) {
-            address = location.getAddress();
-        } else {
-            address = null;
-        }
-
-        if (location.getType() != null) {
-            type = location.getType();
-        } else {
-            type = null;
-        }
+        String name = location.getName();
+        String address = location.getAddress();
+        String type = location.getType();
+        double radius;
 
         if (location.getRadius() != null) {
             radius = location.getRadius();
@@ -48,27 +30,9 @@ public class LocationMapper {
     }
 
     public static Location toLocation(LocationDto location) {
-        String name;
-        String address;
-        String type;
-
-        if (location.getName() != null) {
-            name = location.getName();
-        } else {
-            name = null;
-        }
-
-        if (location.getAddress() != null) {
-            address = location.getAddress();
-        } else {
-            address = null;
-        }
-
-        if (location.getType() != null) {
-            type = location.getType();
-        } else {
-            type = null;
-        }
+        String name = location.getName();
+        String address = location.getAddress();
+        String type = location.getType();
 
         return Location.builder()
                 .lat(location.getLat())
