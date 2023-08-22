@@ -106,8 +106,8 @@ public class EventServiceTest {
 
         location = Location.builder()
                 .id(1L)
-                .lat(2.22F)
-                .lon(2.22F)
+                .lat(2.22)
+                .lon(2.22)
                 .build();
 
         event = Event.builder()

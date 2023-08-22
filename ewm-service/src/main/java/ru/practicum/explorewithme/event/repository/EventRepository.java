@@ -15,6 +15,19 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 
     List<Event> findAllByInitiatorId(long id, PageRequest pageRequest);
 
+    List<Event> findAllByLocationNameIgnoreCase(String name);
+
+    List<Event> findAllByLocationAddressIgnoreCase(String address);
+
+    List<Event> findAllByLocationLatAndLocationLon(Double lat, Double lon);
+
+    List<Event> findAllByLocationAddressAndLocationName(String address, String name);
+
+    List<Event> findAllByLocationNameIgnoreCaseAndLocationAddressIgnoreCaseAndLocationLatAndLocationLon(String name,
+                                                                                                        String address,
+                                                                                                        Double lat,
+                                                                                                        Double lon);
+
     List<Event> findAllByInitiatorInAndStateInAndCategoryInAndEventDateIsAfterAndEventDateIsBefore(List<User> users,
                                                                                                    List<Status> states,
                                                                                                    List<Category> categories,

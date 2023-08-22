@@ -10,8 +10,8 @@ import javax.persistence.*;
 @Entity(name = "locations")
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Location {
 
     @Id
@@ -19,8 +19,20 @@ public class Location {
     private Long id;
 
     @Column
-    private Float lat;
+    private Double lat;
 
     @Column
-    private Float lon;
+    private Double lon;
+
+    @Column
+    private Double radius;
+
+    @Column
+    private String name;
+
+    @Column
+    private String address;
+
+    @Column
+    private String type;
 }

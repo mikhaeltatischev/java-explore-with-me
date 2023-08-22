@@ -2,14 +2,15 @@ DELETE FROM categories CASCADE;
 DELETE FROM locations CASCADE;
 DELETE FROM users CASCADE;
 DELETE FROM events CASCADE;
+DELETE FROM locations CASCADE;
 
 INSERT INTO categories (id, name)
 VALUES (1, 'drama'),
        (2, 'comedy');
 
-INSERT INTO locations (id, lat, lon)
-VALUES (1, 1.22, 2.11),
-       (2, 3.11, 2.11);
+INSERT INTO locations (id, lat, lon, radius, name, address, type)
+VALUES (1, 1, 2, 1, 'Памятник святому', 'Улица свободы 21', 'Памятник'),
+       (2, 3, 2, 1,  '', '', '');
 
 INSERT INTO users (id, email, name)
 VALUES (1, 'mail@mail.ru', 'name name'),

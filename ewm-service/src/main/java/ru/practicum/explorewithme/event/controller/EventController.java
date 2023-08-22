@@ -7,12 +7,11 @@ import org.springframework.web.bind.annotation.*;
 import ru.practicum.explorewithme.category.dto.CategoryDto;
 import ru.practicum.explorewithme.category.dto.NewCategoryDto;
 import ru.practicum.explorewithme.category.service.CategoryService;
-import ru.practicum.explorewithme.event.dto.EventFullDto;
-import ru.practicum.explorewithme.event.dto.EventShortDto;
-import ru.practicum.explorewithme.event.dto.UpdateEventAdminRequest;
+import ru.practicum.explorewithme.event.dto.*;
 import ru.practicum.explorewithme.event.model.AdminSearchParameters;
 import ru.practicum.explorewithme.event.model.PublicSearchParameters;
 import ru.practicum.explorewithme.event.service.EventService;
+import ru.practicum.explorewithme.location.dto.LocationDto;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -54,6 +53,12 @@ public class EventController {
         return service.findEventsForAdmin(AdminSearchParameters.of(users, states, categories, rangeStart, rangeEnd, from, size));
     }
 
+    @GetMapping("/locations/events")
+    @ResponseStatus(HttpStatus.OK)
+    public List<EventShortDto> findEventsByLocation(@RequestBody LocationDto location) {
+        return service.findEventsByLocation(location);
+    }
+
     @GetMapping("/events/{id}")
     @ResponseStatus(HttpStatus.OK)
     public EventFullDto findEvent(@PathVariable long id,
@@ -86,5 +91,25 @@ public class EventController {
     public CategoryDto updateCategory(@PathVariable(name = "catId") long id,
                                       @Valid @RequestBody CategoryDto category) {
         return categoryService.update(id, category);
+    }
+
+    @PostMapping("/users/{userId}/events")
+    @ResponseStatus(HttpStatus.CREATED)
+    public EventFullDto createEvent(@PathVariable long userId,
+                                    @Valid @RequestBody NewEventDto event) {
+        return service.createEvent(userId, event);
+    }
+
+    @GetMapping("/users/{userId}/events/{eventId}")
+    public EventFullDto getEvent(@PathVariable long userId,
+                                 @PathVariable long eventId) {
+        return service.getEvent(userId, eventId);
+    }
+
+    @PatchMapping("/users/{userId}/events/{eventId}")
+    public EventFullDto updateEvent(@PathVariable long userId,
+                                    @PathVariable long eventId,
+                                    @Valid @RequestBody UpdateEventUserRequest request) {
+        return service.updateEvent(userId, eventId, request);
     }
 }

@@ -36,12 +36,9 @@ public class UserControllerTest {
     private List<UserDto> users;
     private List<EventShortDto> events;
     private UserDto userDto;
-    private UpdateEventUserRequest updateEventUserRequest;
     private EventRequestStatusUpdateRequest eventRequestStatusUpdateRequest;
     private EventRequestStatusUpdateResult eventRequestStatusUpdateResult;
     private EventShortDto eventShortDto;
-    private NewEventDto newEvent;
-    private EventFullDto eventFullDto;
     private ParticipationRequestDto participationRequestDto;
     private long userId;
     private long eventId;
@@ -62,19 +59,11 @@ public class UserControllerTest {
                 .name("name name")
                 .build();
 
-        updateEventUserRequest = new UpdateEventUserRequest();
-
-        newEvent = new NewEventDto();
-
         participationRequestDto = new ParticipationRequestDto();
 
         eventRequestStatusUpdateRequest = new EventRequestStatusUpdateRequest();
 
         eventRequestStatusUpdateResult = new EventRequestStatusUpdateResult();
-
-        eventFullDto = EventFullDto.builder()
-                .title("title")
-                .build();
 
         users = List.of(userDto);
         events = List.of(eventShortDto);
@@ -107,27 +96,6 @@ public class UserControllerTest {
         when(eventService.findEvents(userId, 0, 10)).thenReturn(events);
 
         assertEquals(events, controller.getEventsForCurrentUser(userId, 0, 10));
-    }
-
-    @Test
-    public void createEventWhenMethodInvokeReturnEvent() {
-        when(eventService.createEvent(userId, newEvent)).thenReturn(eventFullDto);
-
-        assertEquals(eventFullDto, controller.createEvent(userId, newEvent));
-    }
-
-    @Test
-    public void getEventWhenMethodInvokeReturnEvent() {
-        when(eventService.getEvent(userId, eventId)).thenReturn(eventFullDto);
-
-        assertEquals(eventFullDto, controller.getEvent(userId, eventId));
-    }
-
-    @Test
-    public void updateEventWhenMethodInvokeReturnEvent() {
-        when(eventService.updateEvent(userId, eventId, updateEventUserRequest)).thenReturn(eventFullDto);
-
-        assertEquals(eventFullDto, controller.updateEvent(userId, eventId, updateEventUserRequest));
     }
 
     @Test

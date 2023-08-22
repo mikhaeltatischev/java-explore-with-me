@@ -1,0 +1,1484 @@
+{
+	"info": {
+		"_postman_id": "c7276c2e-99fc-40d7-9299-170d62f1f846",
+		"name": "Test locations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27160350"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "admin add location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Has location create response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Test location 'lat' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('lat');\r",
+									"    pm.expect(jsonData.lat, '\"lat\" must be 62.580572').to.eql(62.580572);\r",
+									"});\r",
+									"pm.test(\"Test location 'lon' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('lon');\r",
+									"    pm.expect(jsonData.lon, '\"lon\" must be 40.923788').to.eql(40.923788);\r",
+									"});\r",
+									"pm.test(\"Test location 'radius' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('radius');\r",
+									"    pm.expect(jsonData.radius, '\"radius\" must be 0.00005').to.eql(0.00005);\r",
+									"});\r",
+									"pm.test(\"Test location 'type' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('type');\r",
+									"    pm.expect(jsonData.type, '\"type\" must be \"Памятник\"').to.eql('Памятник');\r",
+									"});\r",
+									"pm.test(\"Test location 'name' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('name');\r",
+									"    pm.expect(jsonData.name, '\"name\" must be \"Памятник святому\"').to.eql('Памятник святому');\r",
+									"});\r",
+									"pm.test(\"Test location 'address' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('address');\r",
+									"    pm.expect(jsonData.address, '\"address\" must be \"Улица Свободы 21\"').to.eql('Улица Свободы 21');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lat\": 62.580572,\r\n    \"lon\": 40.923788,\r\n    \"radius\": 0.00005,\r\n    \"type\": \"Памятник\",\r\n    \"name\": \"Памятник святому\",\r\n    \"address\": \"Улица Свободы 21\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/locations",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update location with name is blank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"\",\r\n    \"radius\": 0.00001\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/locations/107",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"locations",
+								"107"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update location id 107",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Has location create response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Test location 'lat' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('lat');\r",
+									"    pm.expect(jsonData.lat, '\"lat\" must be 62.580572').to.eql(62.580572);\r",
+									"});\r",
+									"pm.test(\"Test location 'lon' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('lon');\r",
+									"    pm.expect(jsonData.lon, '\"lon\" must be 40.923788').to.eql(40.923788);\r",
+									"});\r",
+									"pm.test(\"Test location 'radius' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('radius');\r",
+									"    pm.expect(jsonData.radius, '\"radius\" must be 0.00001').to.eql(0.00001);\r",
+									"});\r",
+									"pm.test(\"Test location 'type' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('type');\r",
+									"    pm.expect(jsonData.type, '\"type\" must be \"Памятник\"').to.eql('Памятник');\r",
+									"});\r",
+									"pm.test(\"Test location 'name' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('name');\r",
+									"    pm.expect(jsonData.name, '\"name\" must be \"Памятник не святому\"').to.eql('Памятник не святому');\r",
+									"});\r",
+									"pm.test(\"Test location 'address' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('address');\r",
+									"    pm.expect(jsonData.address, '\"address\" must be \"Улица Свободы 21\"').to.eql('Улица Свободы 21');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Памятник не святому\",\r\n    \"radius\": 0.00001\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/locations/107",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"locations",
+								"107"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find location id 107",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Has location create response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Test location 'lat' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('lat');\r",
+									"    pm.expect(jsonData.lat, '\"lat\" must be 62.580572').to.eql(62.580572);\r",
+									"});\r",
+									"pm.test(\"Test location 'lon' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('lon');\r",
+									"    pm.expect(jsonData.lon, '\"lon\" must be 40.923788').to.eql(40.923788);\r",
+									"});\r",
+									"pm.test(\"Test location 'radius' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('radius');\r",
+									"    pm.expect(jsonData.radius, '\"radius\" must be 0.00001').to.eql(0.00001);\r",
+									"});\r",
+									"pm.test(\"Test location 'type' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('type');\r",
+									"    pm.expect(jsonData.type, '\"type\" must be \"Памятник\"').to.eql('Памятник');\r",
+									"});\r",
+									"pm.test(\"Test location 'name' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('name');\r",
+									"    pm.expect(jsonData.name, '\"name\" must be \"Памятник не святому\"').to.eql('Памятник не святому');\r",
+									"});\r",
+									"pm.test(\"Test location 'address' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('address');\r",
+									"    pm.expect(jsonData.address, '\"address\" must be \"Улица Свободы 21\"').to.eql('Улица Свободы 21');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/locations/107",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"locations",
+								"107"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admin add location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Has location create response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Test location 'lat' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('lat');\r",
+									"    pm.expect(jsonData.lat, '\"lat\" must be 52.580000').to.eql(52.580000);\r",
+									"});\r",
+									"pm.test(\"Test location 'lon' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('lon');\r",
+									"    pm.expect(jsonData.lon, '\"lon\" must be 10.000088').to.eql(10.000088);\r",
+									"});\r",
+									"pm.test(\"Test location 'radius' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('radius');\r",
+									"    pm.expect(jsonData.radius, '\"radius\" must be 0.00002').to.eql(0.00002);\r",
+									"});\r",
+									"pm.test(\"Test location 'type' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('type');\r",
+									"    pm.expect(jsonData.type, '\"type\" must be \"Строение\"').to.eql('Строение');\r",
+									"});\r",
+									"pm.test(\"Test location 'name' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('name');\r",
+									"    pm.expect(jsonData.name, '\"name\" must be \"\"').to.eql('');\r",
+									"});\r",
+									"pm.test(\"Test location 'address' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('address');\r",
+									"    pm.expect(jsonData.address, '\"address\" must be \"Улица победы дом 12\"').to.eql('Улица победы дом 12');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lat\": 52.580000,\r\n    \"lon\": 10.000088,\r\n    \"radius\": 0.00002,\r\n    \"type\": \"Строение\",\r\n    \"name\": \"\",\r\n    \"address\": \"Улица победы дом 12\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/locations",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get locations for admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"pm.test(\"Test list location response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length, 'List length must be 10').to.eql(10);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/locations?from=0&size=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"locations"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admin add location with blank name, type, and address",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Has location create response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Test location 'lat' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('lat');\r",
+									"    pm.expect(jsonData.lat, '\"lat\" must be 1.580572').to.eql(1.580572);\r",
+									"});\r",
+									"pm.test(\"Test location 'lon' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('lon');\r",
+									"    pm.expect(jsonData.lon, '\"lon\" must be 1.923788').to.eql(1.923788);\r",
+									"});\r",
+									"pm.test(\"Test location 'radius' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('radius');\r",
+									"    pm.expect(jsonData.radius, '\"radius\" must be 0.00005').to.eql(0.00005);\r",
+									"});\r",
+									"pm.test(\"Test location 'type' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('type');\r",
+									"    pm.expect(jsonData.type, '\"type\" must be \"\"').to.eql('');\r",
+									"});\r",
+									"pm.test(\"Test location 'name' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('name');\r",
+									"    pm.expect(jsonData.name, '\"name\" must be \"\"').to.eql('');\r",
+									"});\r",
+									"pm.test(\"Test location 'address' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('address');\r",
+									"    pm.expect(jsonData.address, '\"address\" must be \"\"').to.eql('');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lat\": 1.580572,\r\n    \"lon\": 1.923788,\r\n    \"radius\": 0.00005,\r\n    \"type\": \"\",\r\n    \"name\": \"\",\r\n    \"address\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/locations",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete location id 109",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([204]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/locations/109",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"locations",
+								"109"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "add user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Has user create response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Test user 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"    pm.expect(jsonData.id, '\"id\" must be 136').to.eql(136);\r",
+									"});\r",
+									"pm.test(\"Test user 'email' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('email');\r",
+									"    pm.expect(jsonData.email, '\"email\" must be \"mail@mail.ru\"').to.eql('mail@mail.ru');\r",
+									"});\r",
+									"pm.test(\"Test user 'name' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('name');\r",
+									"    pm.expect(jsonData.name, '\"name\" must be \"name name\"').to.eql('name name');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"mail@mail.ru\",\r\n    \"name\": \"name name\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "category",
+			"item": [
+				{
+					"name": "add category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Has category create response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Test user 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"    pm.expect(jsonData.id, '\"id\" must be 121').to.eql(121);\r",
+									"});\r",
+									"pm.test(\"Test user 'name' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('name');\r",
+									"    pm.expect(jsonData.name, '\"name\" must be \"drama\"').to.eql('drama');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"drama\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/categories",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "events",
+			"item": [
+				{
+					"name": "add event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Has event create response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Test event 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"    pm.expect(jsonData.id, '\"id\" must be 106').to.eql(106);\r",
+									"});\r",
+									"pm.test(\"Test event 'annotation' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('annotation');\r",
+									"    pm.expect(jsonData.annotation, '\"annotation\" must be \"annotation for event one\"').to.eql('annotation for event one');\r",
+									"});\r",
+									"pm.test(\"Test event 'category' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('category');\r",
+									"    pm.expect(jsonData.category).to.have.property('id');\r",
+									"    pm.expect(jsonData.category.id, '\"category.id\"  must be \"1\"').to.eql(1);\r",
+									"});\r",
+									"pm.test(\"Test event 'confirmedRequests' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('confirmedRequests');\r",
+									"    pm.expect(jsonData.confirmedRequests, '\"confirmedRequests\" must be \"0\"').to.eql(0);\r",
+									"});\r",
+									"pm.test(\"Test event 'description' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('description');\r",
+									"    pm.expect(jsonData.description, '\"description\" must be \"description for event one\"').to.eql('description for event one');\r",
+									"});\r",
+									"pm.test(\"Test event 'eventDate' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('eventDate');\r",
+									"    pm.expect(jsonData.eventDate, '\"eventDate\" must be \"2100-08-14 19:13:51\"').to.eql('2100-08-14 19:13:51');\r",
+									"});\r",
+									"pm.test(\"Test event 'initiator' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('initiator');\r",
+									"    pm.expect(jsonData.initiator).to.have.property('id');\r",
+									"    pm.expect(jsonData.initiator.id, '\"initiator.id\"  must be \"1\"').to.eql(1);\r",
+									"});\r",
+									"pm.test(\"Test event 'location' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('location');\r",
+									"    pm.expect(jsonData.location).to.have.property('lat');\r",
+									"    pm.expect(jsonData.location).to.have.property('lon');\r",
+									"    pm.expect(jsonData.location).to.have.property('name');\r",
+									"    pm.expect(jsonData.location.lat, '\"initiator.lat\"  must be \"62.580572\"').to.eql(62.580572);\r",
+									"    pm.expect(jsonData.location.lon, '\"initiator.lon\"  must be \"40.923788\"').to.eql(40.923788);\r",
+									"    pm.expect(jsonData.location.name, '\"initiator.lon\"  must be \"Памятник не святому\"').to.eql(\"Памятник не святому\");\r",
+									"});\r",
+									"pm.test(\"Test event 'paid' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('paid');\r",
+									"    pm.expect(jsonData.paid, '\"paid\" must be \"true\"').to.eql(true);\r",
+									"});\r",
+									"pm.test(\"Test event 'participantLimit' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('participantLimit');\r",
+									"    pm.expect(jsonData.participantLimit, '\"participantLimit\" must be \"0\"').to.eql(0);\r",
+									"});\r",
+									"pm.test(\"Test event 'publishedOn' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('publishedOn');\r",
+									"    pm.expect(jsonData.publishedOn, '\"publishedOn\" must be \"null\"').to.eql(null);\r",
+									"});\r",
+									"pm.test(\"Test event 'requestModeration' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('requestModeration');\r",
+									"    pm.expect(jsonData.requestModeration, '\"requestModeration\" must be \"true\"').to.eql(true);\r",
+									"});\r",
+									"pm.test(\"Test event 'state' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('state');\r",
+									"    pm.expect(jsonData.state, '\"state\" must be \"PENDING\"').to.eql('PENDING');\r",
+									"});\r",
+									"pm.test(\"Test event 'title' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('title');\r",
+									"    pm.expect(jsonData.title, '\"title\" must be \"title\"').to.eql('title');\r",
+									"});\r",
+									"pm.test(\"Test event 'views' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('views');\r",
+									"    pm.expect(jsonData.views, '\"views\" must be \"0\"').to.eql(0);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"annotation\": \"annotation for event one\",\r\n    \"category\": 1,\r\n    \"description\": \"description for event one\",\r\n    \"eventDate\": \"2100-08-14 19:13:51\",\r\n    \"location\": {\r\n        \"lat\": 62.580572,\r\n        \"lon\": 40.923788\r\n    },\r\n    \"paid\": true,\r\n    \"participantLimit\": 0,\r\n    \"requestModeration\": true,\r\n    \"title\": \"title\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/1/events",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add event with new location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Has event create response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Test event 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"    pm.expect(jsonData.id, '\"id\" must be 107').to.eql(107);\r",
+									"});\r",
+									"pm.test(\"Test event 'annotation' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('annotation');\r",
+									"    pm.expect(jsonData.annotation, '\"annotation\" must be \"annotation for event two\"').to.eql('annotation for event two');\r",
+									"});\r",
+									"pm.test(\"Test event 'category' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('category');\r",
+									"    pm.expect(jsonData.category).to.have.property('id');\r",
+									"    pm.expect(jsonData.category.id, '\"category.id\"  must be \"1\"').to.eql(1);\r",
+									"});\r",
+									"pm.test(\"Test event 'confirmedRequests' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('confirmedRequests');\r",
+									"    pm.expect(jsonData.confirmedRequests, '\"confirmedRequests\" must be \"0\"').to.eql(0);\r",
+									"});\r",
+									"pm.test(\"Test event 'description' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('description');\r",
+									"    pm.expect(jsonData.description, '\"description\" must be \"description for event two\"').to.eql('description for event two');\r",
+									"});\r",
+									"pm.test(\"Test event 'eventDate' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('eventDate');\r",
+									"    pm.expect(jsonData.eventDate, '\"eventDate\" must be \"2200-08-14 19:13:51\"').to.eql('2200-08-14 19:13:51');\r",
+									"});\r",
+									"pm.test(\"Test event 'initiator' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('initiator');\r",
+									"    pm.expect(jsonData.initiator).to.have.property('id');\r",
+									"    pm.expect(jsonData.initiator.id, '\"initiator.id\"  must be \"1\"').to.eql(1);\r",
+									"});\r",
+									"pm.test(\"Test event 'location' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('location');\r",
+									"    pm.expect(jsonData.location).to.have.property('lat');\r",
+									"    pm.expect(jsonData.location).to.have.property('lon');\r",
+									"    pm.expect(jsonData.location.lat, '\"location.lat\"  must be \"1000.111111\"').to.eql(1000.111111);\r",
+									"    pm.expect(jsonData.location.lon, '\"location.lon\"  must be \"1000.000000\"').to.eql(1000.000000);\r",
+									"});\r",
+									"pm.test(\"Test event 'paid' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('paid');\r",
+									"    pm.expect(jsonData.paid, '\"paid\" must be \"true\"').to.eql(false);\r",
+									"});\r",
+									"pm.test(\"Test event 'participantLimit' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('participantLimit');\r",
+									"    pm.expect(jsonData.participantLimit, '\"participantLimit\" must be \"10000\"').to.eql(10000);\r",
+									"});\r",
+									"pm.test(\"Test event 'publishedOn' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('publishedOn');\r",
+									"    pm.expect(jsonData.publishedOn, '\"publishedOn\" must be \"null\"').to.eql(null);\r",
+									"});\r",
+									"pm.test(\"Test event 'requestModeration' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('requestModeration');\r",
+									"    pm.expect(jsonData.requestModeration, '\"requestModeration\" must be \"false\"').to.eql(false);\r",
+									"});\r",
+									"pm.test(\"Test event 'state' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('state');\r",
+									"    pm.expect(jsonData.state, '\"state\" must be \"PENDING\"').to.eql('PENDING');\r",
+									"});\r",
+									"pm.test(\"Test event 'title' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('title');\r",
+									"    pm.expect(jsonData.title, '\"title\" must be \"title two\"').to.eql('title two');\r",
+									"});\r",
+									"pm.test(\"Test event 'views' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('views');\r",
+									"    pm.expect(jsonData.views, '\"views\" must be \"0\"').to.eql(0);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"annotation\": \"annotation for event two\",\r\n    \"category\": 1,\r\n    \"description\": \"description for event two\",\r\n    \"eventDate\": \"2200-08-14 19:13:51\",\r\n    \"location\": {\r\n        \"lat\": 1000.111111,\r\n        \"lon\": 1000.000000\r\n    },\r\n    \"paid\": false,\r\n    \"participantLimit\": 10000,\r\n    \"requestModeration\": false,\r\n    \"title\": \"title two\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/1/events",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"1",
+								"events"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "public",
+			"item": [
+				{
+					"name": "find locations with empty text",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"pm.test(\"Test list location response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length, 'List length must be 2').to.eql(2);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Test location[0] 'lat' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('lat');\r",
+									"    pm.expect(jsonData[0].lat, '\"lat\" must be 62.580572').to.eql(62.580572);\r",
+									"});\r",
+									"pm.test(\"Test location[0] 'lon' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('lon');\r",
+									"    pm.expect(jsonData[0].lon, '\"lon\" must be 40.923788').to.eql(40.923788);\r",
+									"});\r",
+									"pm.test(\"Test location[0] 'radius' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('radius');\r",
+									"    pm.expect(jsonData[0].radius, '\"radius\" must be 0.00001').to.eql(0.00001);\r",
+									"});\r",
+									"pm.test(\"Test location[0] 'type' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('type');\r",
+									"    pm.expect(jsonData[0].type, '\"type\" must be \"Памятник\"').to.eql('Памятник');\r",
+									"});\r",
+									"pm.test(\"Test location[0] 'name' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('name');\r",
+									"    pm.expect(jsonData[0].name, '\"name\" must be \"Памятник не святому\"').to.eql('Памятник не святому');\r",
+									"});\r",
+									"pm.test(\"Test location[0] 'address' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('address');\r",
+									"    pm.expect(jsonData[0].address, '\"address\" must be \"Улица Свободы 21\"').to.eql('Улица Свободы 21');\r",
+									"});\r",
+									"pm.test(\"Test location[1] 'lat' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[1]).to.have.property('lat');\r",
+									"    pm.expect(jsonData[1].lat, '\"lat\" must be 52.580000').to.eql(52.580000);\r",
+									"});\r",
+									"pm.test(\"Test location[1] 'lon' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[1]).to.have.property('lon');\r",
+									"    pm.expect(jsonData[1].lon, '\"lon\" must be 10.000088').to.eql(10.000088);\r",
+									"});\r",
+									"pm.test(\"Test location[1] 'radius' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[1]).to.have.property('radius');\r",
+									"    pm.expect(jsonData[1].radius, '\"radius\" must be 0.00002').to.eql(0.00002);\r",
+									"});\r",
+									"pm.test(\"Test location[1] 'type' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[1]).to.have.property('type');\r",
+									"    pm.expect(jsonData[1].type, '\"type\" must be \"Строение\"').to.eql('Строение');\r",
+									"});\r",
+									"pm.test(\"Test location[1] 'name' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[1]).to.have.property('name');\r",
+									"    pm.expect(jsonData[1].name, '\"name\" must be \"\"').to.eql('');\r",
+									"});\r",
+									"pm.test(\"Test location[1] 'address' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[1]).to.have.property('address');\r",
+									"    pm.expect(jsonData[1].address, '\"address\" must be \"Улица победы дом 12\"').to.eql('Улица победы дом 12');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/locations",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find locations by address",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"pm.test(\"Test list location response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length, 'List length must be 1').to.eql(1);\r",
+									"});\r",
+									"pm.test(\"Test location[0] 'lat' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('lat');\r",
+									"    pm.expect(jsonData[0].lat, '\"lat\" must be 52.580000').to.eql(52.580000);\r",
+									"});\r",
+									"pm.test(\"Test location[0] 'lon' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('lon');\r",
+									"    pm.expect(jsonData[0].lon, '\"lon\" must be 10.000088').to.eql(10.000088);\r",
+									"});\r",
+									"pm.test(\"Test location[0] 'radius' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('radius');\r",
+									"    pm.expect(jsonData[0].radius, '\"radius\" must be 0.00002').to.eql(0.00002);\r",
+									"});\r",
+									"pm.test(\"Test location[0] 'type' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('type');\r",
+									"    pm.expect(jsonData[0].type, '\"type\" must be \"Строение\"').to.eql('Строение');\r",
+									"});\r",
+									"pm.test(\"Test location[0] 'name' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('name');\r",
+									"    pm.expect(jsonData[0].name, '\"name\" must be \"\"').to.eql('');\r",
+									"});\r",
+									"pm.test(\"Test location[0] 'address' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('address');\r",
+									"    pm.expect(jsonData[0].address, '\"address\" must be \"Улица победы дом 12\"').to.eql('Улица победы дом 12');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/locations?text=победы",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations"
+							],
+							"query": [
+								{
+									"key": "text",
+									"value": "победы"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find locations by name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"pm.test(\"Test list location response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length, 'List length must be 1').to.eql(1);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Test location[0] 'lat' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('lat');\r",
+									"    pm.expect(jsonData[0].lat, '\"lat\" must be 62.580572').to.eql(62.580572);\r",
+									"});\r",
+									"pm.test(\"Test location[0] 'lon' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('lon');\r",
+									"    pm.expect(jsonData[0].lon, '\"lon\" must be 40.923788').to.eql(40.923788);\r",
+									"});\r",
+									"pm.test(\"Test location[0] 'radius' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('radius');\r",
+									"    pm.expect(jsonData[0].radius, '\"radius\" must be 0.00001').to.eql(0.00001);\r",
+									"});\r",
+									"pm.test(\"Test location[0] 'type' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('type');\r",
+									"    pm.expect(jsonData[0].type, '\"type\" must be \"Памятник\"').to.eql('Памятник');\r",
+									"});\r",
+									"pm.test(\"Test location[0] 'name' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('name');\r",
+									"    pm.expect(jsonData[0].name, '\"name\" must be \"Памятник не святому\"').to.eql('Памятник не святому');\r",
+									"});\r",
+									"pm.test(\"Test location[0] 'address' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('address');\r",
+									"    pm.expect(jsonData[0].address, '\"address\" must be \"Улица Свободы 21\"').to.eql('Улица Свободы 21');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/locations?text=памятник",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations"
+							],
+							"query": [
+								{
+									"key": "text",
+									"value": "памятник"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find events by location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Test list location response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length, 'List length must be 1').to.eql(1);\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('id');\r",
+									"    pm.expect(jsonData[0].id, '\"id\" must be 106').to.eql(106);\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'annotation' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('annotation');\r",
+									"    pm.expect(jsonData[0].annotation, '\"annotation\" must be \"annotation for event one\"').to.eql('annotation for event one');\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'category' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('category');\r",
+									"    pm.expect(jsonData[0].category).to.have.property('id');\r",
+									"    pm.expect(jsonData[0].category.id, '\"category.id\"  must be \"1\"').to.eql(1);\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'confirmedRequests' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('confirmedRequests');\r",
+									"    pm.expect(jsonData[0].confirmedRequests, '\"confirmedRequests\" must be \"0\"').to.eql(0);\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'eventDate' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('eventDate');\r",
+									"    pm.expect(jsonData[0].eventDate, '\"eventDate\" must be \"2100-08-14 19:13:51\"').to.eql('2100-08-14 19:13:51');\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'initiator' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('initiator');\r",
+									"    pm.expect(jsonData[0].initiator).to.have.property('id');\r",
+									"    pm.expect(jsonData[0].initiator.id, '\"initiator.id\"  must be \"1\"').to.eql(1);\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'paid' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('paid');\r",
+									"    pm.expect(jsonData[0].paid, '\"paid\" must be \"true\"').to.eql(true);\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'title' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('title');\r",
+									"    pm.expect(jsonData[0].title, '\"title\" must be \"title\"').to.eql('title');\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'views' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('views');\r",
+									"    pm.expect(jsonData[0].views, '\"views\" must be \"0\"').to.eql(0);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lat\": 62.580572,\r\n    \"lon\": 40.923788,\r\n    \"name\": \"Памятник не святому\",\r\n    \"address\": \"Улица Свободы 21\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/locations/events",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find events by coordinates",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Test list location response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length, 'List length must be 1').to.eql(1);\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('id');\r",
+									"    pm.expect(jsonData[0].id, '\"id\" must be 106').to.eql(106);\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'annotation' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('annotation');\r",
+									"    pm.expect(jsonData[0].annotation, '\"annotation\" must be \"annotation for event one\"').to.eql('annotation for event one');\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'category' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('category');\r",
+									"    pm.expect(jsonData[0].category).to.have.property('id');\r",
+									"    pm.expect(jsonData[0].category.id, '\"category.id\"  must be \"1\"').to.eql(1);\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'confirmedRequests' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('confirmedRequests');\r",
+									"    pm.expect(jsonData[0].confirmedRequests, '\"confirmedRequests\" must be \"0\"').to.eql(0);\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'eventDate' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('eventDate');\r",
+									"    pm.expect(jsonData[0].eventDate, '\"eventDate\" must be \"2100-08-14 19:13:51\"').to.eql('2100-08-14 19:13:51');\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'initiator' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('initiator');\r",
+									"    pm.expect(jsonData[0].initiator).to.have.property('id');\r",
+									"    pm.expect(jsonData[0].initiator.id, '\"initiator.id\"  must be \"1\"').to.eql(1);\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'paid' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('paid');\r",
+									"    pm.expect(jsonData[0].paid, '\"paid\" must be \"true\"').to.eql(true);\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'title' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('title');\r",
+									"    pm.expect(jsonData[0].title, '\"title\" must be \"title\"').to.eql('title');\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'views' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('views');\r",
+									"    pm.expect(jsonData[0].views, '\"views\" must be \"0\"').to.eql(0);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lat\": 62.580572,\r\n    \"lon\": 40.923788\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/locations/events",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find events by location name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"pm.test(\"Test list location response\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length, 'List length must be 1').to.eql(1);\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'id' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('id');\r",
+									"    pm.expect(jsonData[0].id, '\"id\" must be 106').to.eql(106);\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'annotation' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('annotation');\r",
+									"    pm.expect(jsonData[0].annotation, '\"annotation\" must be \"annotation for event one\"').to.eql('annotation for event one');\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'category' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('category');\r",
+									"    pm.expect(jsonData[0].category).to.have.property('id');\r",
+									"    pm.expect(jsonData[0].category.id, '\"category.id\"  must be \"1\"').to.eql(1);\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'confirmedRequests' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('confirmedRequests');\r",
+									"    pm.expect(jsonData[0].confirmedRequests, '\"confirmedRequests\" must be \"0\"').to.eql(0);\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'eventDate' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('eventDate');\r",
+									"    pm.expect(jsonData[0].eventDate, '\"eventDate\" must be \"2100-08-14 19:13:51\"').to.eql('2100-08-14 19:13:51');\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'initiator' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('initiator');\r",
+									"    pm.expect(jsonData[0].initiator).to.have.property('id');\r",
+									"    pm.expect(jsonData[0].initiator.id, '\"initiator.id\"  must be \"1\"').to.eql(1);\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'paid' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('paid');\r",
+									"    pm.expect(jsonData[0].paid, '\"paid\" must be \"true\"').to.eql(true);\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'title' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('title');\r",
+									"    pm.expect(jsonData[0].title, '\"title\" must be \"title\"').to.eql('title');\r",
+									"});\r",
+									"pm.test(\"Test event[0] 'views' field\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property('views');\r",
+									"    pm.expect(jsonData[0].views, '\"views\" must be \"0\"').to.eql(0);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Памятник не святому\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/locations/events",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find events by empty location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/locations/events",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations",
+								"events"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

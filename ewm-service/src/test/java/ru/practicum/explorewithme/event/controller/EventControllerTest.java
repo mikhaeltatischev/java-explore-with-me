@@ -10,7 +10,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import ru.practicum.explorewithme.category.service.CategoryService;
 import ru.practicum.explorewithme.category.service.CategoryServiceImpl;
 import ru.practicum.explorewithme.event.dto.EventFullDto;
+import ru.practicum.explorewithme.event.dto.NewEventDto;
 import ru.practicum.explorewithme.event.dto.UpdateEventAdminRequest;
+import ru.practicum.explorewithme.event.dto.UpdateEventUserRequest;
 import ru.practicum.explorewithme.event.service.EventServiceImpl;
 
 import java.util.List;
@@ -33,7 +35,9 @@ public class EventControllerTest {
     private EventController controller;
 
     private UpdateEventAdminRequest eventUpdateRequest;
+    private UpdateEventUserRequest updateEventUserRequest;
     private EventFullDto eventFullDto;
+    private NewEventDto newEvent;
     private long eventId;
     private long userId;
     private List<EventFullDto> events;
@@ -44,6 +48,7 @@ public class EventControllerTest {
         userId = 1L;
 
         eventUpdateRequest = new UpdateEventAdminRequest();
+        updateEventUserRequest = new UpdateEventUserRequest();
 
         eventFullDto = EventFullDto.builder()
                 .id(eventId)
@@ -65,5 +70,26 @@ public class EventControllerTest {
         when(eventService.editEvent(eventId, eventUpdateRequest)).thenReturn(eventFullDto);
 
         assertEquals(eventFullDto, controller.editEvent(eventId, eventUpdateRequest));
+    }
+
+    @Test
+    public void createEventWhenMethodInvokeReturnEvent() {
+        when(eventService.createEvent(userId, newEvent)).thenReturn(eventFullDto);
+
+        assertEquals(eventFullDto, controller.createEvent(userId, newEvent));
+    }
+
+    @Test
+    public void getEventWhenMethodInvokeReturnEvent() {
+        when(eventService.getEvent(userId, eventId)).thenReturn(eventFullDto);
+
+        assertEquals(eventFullDto, controller.getEvent(userId, eventId));
+    }
+
+    @Test
+    public void updateEventWhenMethodInvokeReturnEvent() {
+        when(eventService.updateEvent(userId, eventId, updateEventUserRequest)).thenReturn(eventFullDto);
+
+        assertEquals(eventFullDto, controller.updateEvent(userId, eventId, updateEventUserRequest));
     }
 }

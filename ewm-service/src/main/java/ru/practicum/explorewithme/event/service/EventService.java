@@ -1,6 +1,7 @@
 package ru.practicum.explorewithme.event.service;
 
 import ru.practicum.explorewithme.event.model.PublicSearchParameters;
+import ru.practicum.explorewithme.location.dto.LocationDto;
 import ru.practicum.explorewithme.request.dto.ParticipationRequestDto;
 import ru.practicum.explorewithme.event.dto.*;
 import ru.practicum.explorewithme.event.model.AdminSearchParameters;
@@ -10,7 +11,15 @@ import java.util.List;
 
 public interface EventService {
 
+    List<EventFullDto> findEventsForAdmin(AdminSearchParameters parameters);
+
+    EventFullDto findEventPublic(long eventId, HttpServletRequest request);
+
+    List<EventShortDto> findEvents(PublicSearchParameters parameters, HttpServletRequest request);
+
     List<EventShortDto> findEvents(long userId, int from, int size);
+
+    List<EventShortDto> findEventsByLocation(LocationDto location);
 
     EventFullDto createEvent(long userId, NewEventDto event);
 
@@ -22,11 +31,5 @@ public interface EventService {
 
     EventRequestStatusUpdateResult changeRequestsStatus(long userId, long eventId, EventRequestStatusUpdateRequest request);
 
-    List<EventFullDto> findEventsForAdmin(AdminSearchParameters parameters);
-
     EventFullDto editEvent(long eventId, UpdateEventAdminRequest request);
-
-    List<EventShortDto> findEvents(PublicSearchParameters parameters, HttpServletRequest request);
-
-    EventFullDto findEventPublic(long eventId, HttpServletRequest request);
 }

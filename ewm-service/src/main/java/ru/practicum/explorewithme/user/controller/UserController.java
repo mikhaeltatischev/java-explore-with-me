@@ -51,25 +51,7 @@ public class UserController {
         return eventService.findEvents(userId, from, size);
     }
 
-    @PostMapping("/users/{userId}/events")
-    @ResponseStatus(HttpStatus.CREATED)
-    public EventFullDto createEvent(@PathVariable long userId,
-                                    @Valid @RequestBody NewEventDto event) {
-        return eventService.createEvent(userId, event);
-    }
 
-    @GetMapping("/users/{userId}/events/{eventId}")
-    public EventFullDto getEvent(@PathVariable long userId,
-                                 @PathVariable long eventId) {
-        return eventService.getEvent(userId, eventId);
-    }
-
-    @PatchMapping("/users/{userId}/events/{eventId}")
-    public EventFullDto updateEvent(@PathVariable long userId,
-                                    @PathVariable long eventId,
-                                    @Valid @RequestBody UpdateEventUserRequest request) {
-        return eventService.updateEvent(userId, eventId, request);
-    }
 
     @GetMapping("/users/{userId}/events/{eventId}/requests")
     public List<ParticipationRequestDto> getParticipationRequest(@PathVariable long userId,
