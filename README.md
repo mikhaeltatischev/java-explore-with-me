@@ -1,4 +1,5 @@
-# Полезный проект для любителей различных мероприятий.  
+# Java-explore-with-me 
+Полезный проект для любителей различных мероприятий.  
 
 *Кино? Спектакль? Концерт? - найдется всё.*  
 Это удобно, как для организаторов, так и для участников.
@@ -10,8 +11,11 @@
 <p>
   <img src="https://img.shields.io/badge/Java-red" />
   <img src="https://img.shields.io/badge/Spring%20boot-light green" />
+  <img src="https://img.shields.io/badge/Spring%20validation-light green" />
   <img src="https://img.shields.io/badge/Mockito-green" />
+  <img src="https://img.shields.io/badge/Hibernate-yellow" />
   <img src="https://img.shields.io/badge/PostgreSQL-blue" />
+  <img src="https://img.shields.io/badge/Lombok-orange" />
   <img alt="Docker" src="https://img.shields.io/badge/-Docker-46a2f1?style=flat-square&logo=docker&logoColor=white" />
 </p>
 
