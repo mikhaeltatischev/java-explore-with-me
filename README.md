@@ -15,7 +15,6 @@
   <img src="https://img.shields.io/badge/Mockito-green" />
   <img src="https://img.shields.io/badge/Hibernate-yellow" />
   <img src="https://img.shields.io/badge/PostgreSQL-blue" />
-  <img src="https://img.shields.io/badge/Lombok-orange" />
   <img alt="Docker" src="https://img.shields.io/badge/-Docker-46a2f1?style=flat-square&logo=docker&logoColor=white" />
 </p>
 
